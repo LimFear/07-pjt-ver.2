@@ -15,6 +15,6 @@ urlpatterns = [
     path('books/<int:book_pk>/threads/', views.create_thread, name='create_thread'),
 
     # comments
-    path('threads/<int:thread_pk>/comments/', views.create_comment, name='create_comment'),
     path('comments/<int:pk>/', views.comment_detail, name='comment_detail'),
+    path('threads/<int:thread_pk>/comments/', views.create_comment, name='create_comment'),
 ]
