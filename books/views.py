@@ -5,7 +5,10 @@ from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_GET, require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .models import Category, Book, Thread, Comment
+from .serializers import CategorySerializer
 
 # Create your views here.
 # ---------- 직렬화 유틸 ----------
@@ -15,11 +18,13 @@ def d(dt):   # 날짜/시간 ISO 문자열로
 def category_dict(c: Category):
     return {"id": c.id, "name": c.name}
 
+
 def book_list_dict(b: Book):
     return {"id": b.id, "title": b.title, "author": b.author, "isbn": b.isbn, "cover": b.cover}
 
 def thread_short_dict(t: Thread):
     return {"id": t.id, "title": t.title, "content": t.content, "reading_date": d(t.reading_date)}
+
 
 def book_detail_dict(b: Book):
     return {
